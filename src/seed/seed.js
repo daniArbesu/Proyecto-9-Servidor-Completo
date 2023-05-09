@@ -8,7 +8,8 @@ const seed = {
       name: 'Arianna',
       photo_url: '#',
       surname: 'Fontana',
-      weight: 63
+      weight: 63,
+      _game_id: ['4', '5', '6', '7']
     },
     {
       _athlete_id: '10',
@@ -18,7 +19,8 @@ const seed = {
       name: 'Fermín',
       photo_url: '#',
       surname: 'Cacho',
-      weight: 65
+      weight: 65,
+      _game_id: ['13', '14']
     },
     {
       _athlete_id: '11',
@@ -28,7 +30,8 @@ const seed = {
       name: 'Evelyn',
       photo_url: '#',
       surname: 'Ashford',
-      weight: 52
+      weight: 52,
+      _game_id: ['14', '15', '16']
     },
     {
       _athlete_id: '12',
@@ -38,7 +41,8 @@ const seed = {
       name: 'Yolanda',
       photo_url: '#',
       surname: 'Gail Devers-Roberts',
-      weight: 55
+      weight: 55,
+      _game_id: ['13', '14']
     },
     {
       _athlete_id: '13',
@@ -48,7 +52,8 @@ const seed = {
       name: 'Simon',
       photo_url: '#',
       surname: 'Whitfield',
-      weight: 70
+      weight: 70,
+      _game_id: ['11', '18']
     },
     {
       _athlete_id: '14',
@@ -58,7 +63,8 @@ const seed = {
       name: 'Robert',
       photo_url: '#',
       surname: 'Bartko',
-      weight: 80
+      weight: 80,
+      _game_id: ['11']
     },
     {
       _athlete_id: '15',
@@ -68,7 +74,8 @@ const seed = {
       name: 'Aleksandr',
       photo_url: '#',
       surname: 'Karelin',
-      weight: 99
+      weight: 99,
+      _game_id: ['11', '13', '14', '15']
     },
     {
       _athlete_id: '16',
@@ -78,7 +85,8 @@ const seed = {
       name: 'Hicham',
       photo_url: '#',
       surname: 'El Guerrouj',
-      weight: 58
+      weight: 58,
+      _game_id: ['9', '11']
     },
     {
       _athlete_id: '17',
@@ -88,7 +96,8 @@ const seed = {
       name: 'Michael',
       photo_url: '#',
       surname: 'Phelps',
-      weight: 91
+      weight: 91,
+      _game_id: ['2', '3', '8', '9']
     },
     {
       _athlete_id: '18',
@@ -98,7 +107,8 @@ const seed = {
       name: 'Noriaki',
       photo_url: '#',
       surname: 'Kasai',
-      weight: 60
+      weight: 60,
+      _game_id: ['5']
     },
     {
       _athlete_id: '2',
@@ -108,7 +118,8 @@ const seed = {
       name: 'Lidia',
       photo_url: '#',
       surname: 'Valentin Perez',
-      weight: 75
+      weight: 75,
+      _game_id: ['8', '3', '2', '13', '14']
     },
     {
       _athlete_id: '3',
@@ -118,7 +129,8 @@ const seed = {
       name: 'Chase',
       photo_url: '#',
       surname: 'Kalisz',
-      weight: 86
+      weight: 86,
+      _game_id: ['2']
     },
     {
       _athlete_id: '4',
@@ -128,7 +140,8 @@ const seed = {
       name: 'Andy',
       photo_url: '#',
       surname: 'Murray',
-      weight: 83
+      weight: 83,
+      _game_id: ['3', '2']
     },
     {
       _athlete_id: '5',
@@ -138,7 +151,8 @@ const seed = {
       name: 'Usain',
       photo_url: '#',
       surname: 'Bolt',
-      weight: 95
+      weight: 95,
+      _game_id: ['8', '3', '2']
     },
     {
       _athlete_id: '6',

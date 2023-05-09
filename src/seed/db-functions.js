@@ -25,19 +25,32 @@ export const saveDocuments = async () => {
 export const updateResults = async (athletes, athleteResults, olympicGames) => {
   await Promise.all(
     athleteResults.map(async (result) => {
-      const dbRoutine = athletes.find((athlete) => athlete._athlete_id === result._athlete_id);
-      await result.updateOne({ athlete_id: dbRoutine._id });
+      const dbAthletes = athletes.find((athlete) => athlete._athlete_id === result._athlete_id);
+      await result.updateOne({ athlete_id: dbAthletes._id });
     })
   );
 
   await Promise.all(
     athleteResults.map(async (result) => {
-      const dbRoutine = olympicGames.find((game) => game._game_id === result._game_id);
-      await result.updateOne({ game_id: dbRoutine._id });
+      const dbGames = olympicGames.find((game) => game._game_id === result._game_id);
+      await result.updateOne({ game_id: dbGames._id });
     })
   );
   console.log('>> Updated AthleteResults');
 };
+
+/* export const updateAthletes = async (athletes, athleteResults) => {
+  await Promise.all(
+    athletes.map(async (athlete) => {
+      const dbResults = athlete._game_id.find(
+        (athlete) => athlete._athlete_id === result._athlete_id
+      );
+      await result.updateOne({ athlete_id: dbRoutine._id });
+    })
+  );
+
+  console.log('>> Updated Athletes');
+}; */
 
 export const cleanPrivateFields = async () => {
   await AthleteResults.updateMany(
