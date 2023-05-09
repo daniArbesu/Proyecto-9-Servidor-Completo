@@ -1,4 +1,7 @@
-const express = require('express');
+/* eslint-disable import/extensions */
+import './config/env.js';
+import './config/db.js';
+import express from 'express';
 
 const app = express();
 
