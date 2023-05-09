@@ -2,22 +2,18 @@
 // Mongo DB
 import mongoose from 'mongoose';
 
-const MONGO_PORT = 27018;
-const MONGO_DB = 'fitness';
-
 mongoose.set('strict', false);
 mongoose.set('strictQuery', false);
 mongoose.set('strictPopulate', false);
 
 const USERNAME = process.env.DB_USER;
 const PASSWORD = process.env.DB_PASSWORD;
-const DB_NAME = 'money-exchange-db';
+const DB_NAME = 'olympic-games-db';
 
 mongoose
-  .connect(`mongodb://localhost:${MONGO_PORT}/${MONGO_DB}`)
-  /*   .connect(
-    `mongodb+srv://${USERNAME}:${PASSWORD}@rockthemongo.kkf4buu.mongodb.net/${DB_NAME}?retryWrites=true&w=majority`
-  ) */
+  .connect(
+    `mongodb+srv://${USERNAME}:${PASSWORD}@cluster0.kotv9qb.mongodb.net/${DB_NAME}?retryWrites=true&w=majority`
+  )
   .then(() => {
     console.log('>> Connected to DB!');
   })

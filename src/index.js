@@ -9,7 +9,10 @@ const app = express();
 app.use(express.json({ limit: '100kb' }));
 app.use(express.urlencoded({ extended: false }));
 
-const PORT = process.env.PORT || 3001;
+// Healthcheck para comprobar que la API está encendida
+app.get('/ping', (req, res) => res.status(200).send('Pong'));
+
+const PORT = process.env.PORT || 4001;
 app.listen(PORT, () => {
   console.log(`Server Running in port ${PORT}!`);
 });
