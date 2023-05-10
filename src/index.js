@@ -2,6 +2,7 @@
 /* eslint-disable import/extensions */
 import './config/env.js';
 import './config/db.js';
+import './config/cloudinary.js';
 import express from 'express';
 import cors from 'cors';
 import rateLimit from 'express-rate-limit';
@@ -47,6 +48,9 @@ app.use('*', (req, res) => {
 app.use((error, req, res) => {
   res.status(500).json({ data: 'Internal Server Error' });
 });
+
+// Disable for security reasons the stack used to develope the API
+app.disable('x-powered-by');
 
 const PORT = process.env.PORT || 4001;
 app.listen(PORT, () => {

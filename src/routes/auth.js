@@ -98,4 +98,7 @@ router.post('/login', async (req, res) => {
   }
 });
 
+// POST http://localhost:4001/auth/avatar
+router.post('/avatar', async (req, res) => {});
+
 export default router;
