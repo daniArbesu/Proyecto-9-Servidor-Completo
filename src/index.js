@@ -4,8 +4,17 @@ import './config/env.js';
 import './config/db.js';
 import express from 'express';
 import cors from 'cors';
+import rateLimit from 'express-rate-limit';
 import publicRouter from './routes/index.js';
 import authRouter from './routes/auth.js';
+
+// Defining rate-limit for the API
+const limiter = rateLimit({
+  windowMs: 3 * 60 * 1000, // 3 minutes
+  max: 50, // Limit each IP to 100 requests per 'window' (here, per 3 minutes)
+  standardHeaders: true, // Return rate limit info in the 'RateLimit-*' headers
+  legacyHeaders: false // Disable the 'X-RateLimit-*' headers
+});
 
 const app = express();
 
@@ -18,6 +27,9 @@ app.use(
     }
   })
 );
+
+// Apply the rate limiting middleware to all requests
+app.use(limiter);
 
 app.use(express.json({ limit: '100kb' }));
 app.use(express.urlencoded({ extended: false }));
