@@ -9,6 +9,16 @@ import authRouter from './routes/auth.js';
 
 const app = express();
 
+// Using CORS middleware to restrict website access
+app.use(
+  cors({
+    origin: (urlOrigin, callback) => {
+      // Allowing all IPs right now
+      callback(null, true);
+    }
+  })
+);
+
 app.use(express.json({ limit: '100kb' }));
 app.use(express.urlencoded({ extended: false }));
 
