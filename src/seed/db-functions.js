@@ -1,13 +1,13 @@
 /* eslint-disable no-underscore-dangle */
 /* eslint-disable import/extensions */
 /* eslint-disable no-console */
-import { Athlete, AthleteResults, Game } from '../models/mongo.js';
+import { Athlete, Game } from '../models/mongo.js';
 import seed from './seed.js';
 
 export const cleanCollections = async () => {
   // reset the different collections in case there were there before
   await Athlete.collection.drop();
-  await AthleteResults.collection.drop();
+  // await AthleteResults.collection.drop();
   await Game.collection.drop();
 
   console.log('>> Collections cleaned in DB');
@@ -16,12 +16,12 @@ export const cleanCollections = async () => {
 export const saveDocuments = async () => {
   console.log('>> Populating seeds in DB');
   const athletes = await Athlete.insertMany(seed.athletes);
-  const athleteResults = await AthleteResults.insertMany(seed.athleteResult);
+  // const athleteResults = await AthleteResults.insertMany(seed.athleteResult);
   const olympicGames = await Game.insertMany(seed.games);
 
-  return { athletes, athleteResults, olympicGames };
+  return { athletes, olympicGames };
 };
-
+/* 
 export const updateResults = async (athletes, athleteResults, olympicGames) => {
   await Promise.all(
     athleteResults.map(async (result) => {
@@ -37,7 +37,7 @@ export const updateResults = async (athletes, athleteResults, olympicGames) => {
     })
   );
   console.log('>> Updated AthleteResults');
-};
+}; */
 
 export const updateAthletes = async (athletes, olympicGames) => {
   await Promise.all(
@@ -59,8 +59,28 @@ export const updateAthletes = async (athletes, olympicGames) => {
   console.log('>> Updated Athletes');
 };
 
+export const updateGames = async (athletes, olympicGames) => {
+  await Promise.all(
+    olympicGames.map(async (game) => {
+      const dbAthletes = game._athlete_id.map((athleteId) => {
+        const relatedAthlete = athletes.find((athlete) => athlete._athlete_id === athleteId);
+
+        if (relatedAthlete) {
+          return relatedAthlete._id;
+        }
+
+        return [];
+      });
+
+      await game.updateOne({ athletes: dbAthletes });
+    })
+  );
+
+  console.log('>> Updated Games');
+};
+
 export const cleanPrivateFields = async () => {
-  await AthleteResults.updateMany(
+  /* await AthleteResults.updateMany(
     {},
     {
       $unset: {
@@ -68,7 +88,7 @@ export const cleanPrivateFields = async () => {
         _game_id: 1
       }
     }
-  );
+  ); */
 
   await Athlete.updateMany(
     {},
@@ -84,7 +104,8 @@ export const cleanPrivateFields = async () => {
     {},
     {
       $unset: {
-        _game_id: 1
+        _game_id: 1,
+        _athlete_id: 1
       }
     }
   );

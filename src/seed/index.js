@@ -8,17 +8,16 @@ import {
   cleanPrivateFields,
   saveDocuments,
   updateAthletes,
-  updateResults
+  updateGames
 } from './db-functions.js';
 
 const main = async () => {
   // reset the different collections in case there were there before
   await cleanCollections();
   // populating seed
-  const { athletes, athleteResults, olympicGames } = await saveDocuments();
-  // update athleteResults
-  await updateResults(athletes, athleteResults, olympicGames);
+  const { athletes, olympicGames } = await saveDocuments();
   await updateAthletes(athletes, olympicGames);
+  await updateGames(athletes, olympicGames);
   await cleanPrivateFields();
 };
 

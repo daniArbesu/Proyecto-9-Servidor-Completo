@@ -199,375 +199,102 @@ const seed = {
       _game_id: ['15', '16']
     }
   ],
-  athleteResult: [
-    {
-      _athlete_id: '1',
-      bronze: 1,
-      _game_id: 4,
-      gold: 1,
-      silver: 1
-    },
-    {
-      _athlete_id: '1',
-      bronze: 2,
-      _game_id: 5,
-      gold: 0,
-      silver: 1
-    },
-    {
-      _athlete_id: '1',
-      bronze: 1,
-      _game_id: 6,
-      gold: 0,
-      silver: 0
-    },
-    {
-      _athlete_id: '1',
-      bronze: 1,
-      _game_id: 7,
-      gold: 0,
-      silver: 0
-    },
-    {
-      _athlete_id: '2',
-      bronze: 0,
-      _game_id: 8,
-      gold: 0,
-      silver: 1
-    },
-    {
-      _athlete_id: '2',
-      bronze: 0,
-      _game_id: 3,
-      gold: 1,
-      silver: 0
-    },
-    {
-      _athlete_id: '2',
-      bronze: 1,
-      _game_id: 2,
-      gold: 0,
-      silver: 0
-    },
-    {
-      _athlete_id: '3',
-      bronze: 0,
-      _game_id: 2,
-      gold: 0,
-      silver: 1
-    },
-    {
-      _athlete_id: '4',
-      bronze: 0,
-      _game_id: 3,
-      gold: 1,
-      silver: 1
-    },
-    {
-      _athlete_id: '4',
-      bronze: 0,
-      _game_id: 2,
-      gold: 1,
-      silver: 0
-    },
-    {
-      _athlete_id: '5',
-      bronze: 0,
-      _game_id: 8,
-      gold: 2,
-      silver: 0
-    },
-    {
-      _athlete_id: '5',
-      bronze: 0,
-      _game_id: 3,
-      gold: 3,
-      silver: 0
-    },
-    {
-      _athlete_id: '5',
-      bronze: 0,
-      _game_id: 2,
-      gold: 3,
-      silver: 0
-    },
-    {
-      _athlete_id: '7',
-      bronze: 0,
-      _game_id: 3,
-      gold: 0,
-      silver: 1
-    },
-    {
-      _athlete_id: '8',
-      bronze: 0,
-      _game_id: 16,
-      gold: 4,
-      silver: 0
-    },
-    {
-      _athlete_id: '8',
-      bronze: 0,
-      _game_id: 15,
-      gold: 2,
-      silver: 1
-    },
-    {
-      _athlete_id: '8',
-      bronze: 0,
-      _game_id: 14,
-      gold: 2,
-      silver: 0
-    },
-    {
-      _athlete_id: '8',
-      bronze: 0,
-      _game_id: 13,
-      gold: 1,
-      silver: 0
-    },
-    {
-      _athlete_id: '9',
-      bronze: 0,
-      _game_id: 16,
-      gold: 1,
-      silver: 0
-    },
-    {
-      _athlete_id: '9',
-      bronze: 0,
-      _game_id: 15,
-      gold: 0,
-      silver: 1
-    },
-    {
-      _athlete_id: '10',
-      bronze: 0,
-      _game_id: 13,
-      gold: 0,
-      silver: 1
-    },
-    {
-      _athlete_id: '10',
-      bronze: 0,
-      _game_id: 14,
-      gold: 1,
-      silver: 0
-    },
-    {
-      _athlete_id: '11',
-      bronze: 0,
-      _game_id: 14,
-      gold: 1,
-      silver: 0
-    },
-    {
-      _athlete_id: '11',
-      bronze: 0,
-      _game_id: 15,
-      gold: 1,
-      silver: 1
-    },
-    {
-      _athlete_id: '11',
-      bronze: 0,
-      _game_id: 16,
-      gold: 2,
-      silver: 0
-    },
-    {
-      _athlete_id: '12',
-      bronze: 0,
-      _game_id: 13,
-      gold: 2,
-      silver: 0
-    },
-    {
-      _athlete_id: '12',
-      bronze: 0,
-      _game_id: 14,
-      gold: 1,
-      silver: 0
-    },
-    {
-      _athlete_id: '13',
-      bronze: 0,
-      _game_id: 11,
-      gold: 1,
-      silver: 0
-    },
-    {
-      _athlete_id: '13',
-      bronze: 0,
-      _game_id: 8,
-      gold: 0,
-      silver: 1
-    },
-    {
-      _athlete_id: '14',
-      bronze: 0,
-      _game_id: 11,
-      gold: 2,
-      silver: 0
-    },
-    {
-      _athlete_id: '16',
-      bronze: 0,
-      _game_id: 9,
-      gold: 2,
-      silver: 0
-    },
-    {
-      _athlete_id: '16',
-      bronze: 0,
-      _game_id: 11,
-      gold: 0,
-      silver: 1
-    },
-    {
-      _athlete_id: '15',
-      bronze: 0,
-      _game_id: 11,
-      gold: 0,
-      silver: 1
-    },
-    {
-      _athlete_id: '15',
-      bronze: 0,
-      _game_id: 13,
-      gold: 1,
-      silver: 0
-    },
-    {
-      _athlete_id: '15',
-      bronze: 0,
-      _game_id: 14,
-      gold: 1,
-      silver: 0
-    },
-    {
-      _athlete_id: '15',
-      bronze: 0,
-      _game_id: 15,
-      gold: 1,
-      silver: 0
-    },
-    {
-      _athlete_id: '17',
-      bronze: 0,
-      _game_id: 2,
-      gold: 5,
-      silver: 1
-    },
-    {
-      _athlete_id: '17',
-      bronze: 0,
-      _game_id: 3,
-      gold: 4,
-      silver: 2
-    },
-    {
-      _athlete_id: '17',
-      bronze: 0,
-      _game_id: 8,
-      gold: 8,
-      silver: 0
-    },
-    {
-      _athlete_id: '17',
-      bronze: 2,
-      _game_id: 9,
-      gold: 6,
-      silver: 0
-    },
-    {
-      _athlete_id: '18',
-      bronze: 1,
-      _game_id: 5,
-      gold: 0,
-      silver: 1
-    }
-  ],
   games: [
     {
       city: 'Tokyo',
       _game_id: 1,
-      year: 2020
+      year: 2020,
+      _athlete_id: []
     },
     {
       city: 'Rio de Janeiro',
       _game_id: 2,
-      year: 2016
+      year: 2016,
+      _athlete_id: ['17', '2', '3', '4', '5']
     },
     {
       city: 'London',
       _game_id: 3,
-      year: 2012
+      year: 2012,
+      _athlete_id: ['17', '2', '4', '7']
     },
     {
       city: 'Pyeongchang',
       _game_id: 4,
-      year: 2018
+      year: 2018,
+      _athlete_id: ['1']
     },
     {
       city: 'Sochi',
       _game_id: 5,
-      year: 2014
+      year: 2014,
+      _athlete_id: ['1', '18']
     },
     {
       city: 'Vancouver',
       _game_id: 6,
-      year: 2010
+      year: 2010,
+      _athlete_id: ['1']
     },
     {
       city: 'Turin',
       _game_id: 7,
-      year: 2006
+      year: 2006,
+      _athlete_id: ['1']
     },
     {
       city: 'Beijing',
       _game_id: 8,
-      year: 2008
+      year: 2008,
+      _athlete_id: ['13', '17', '2', '5']
     },
     {
       city: 'Athens',
       _game_id: 9,
-      year: 2004
+      year: 2004,
+      _athlete_id: ['16', '17']
     },
     {
       city: 'Salt Lake City',
       _game_id: 10,
-      year: 2002
+      year: 2002,
+      _athlete_id: []
     },
     {
       city: 'Sydney',
       _game_id: 11,
-      year: 2000
+      year: 2000,
+      _athlete_id: ['13', '14', '15', '16']
     },
     {
       city: 'Nagano',
       _game_id: 12,
-      year: 1998
+      year: 1998,
+      _athlete_id: []
     },
     {
       city: 'Atlanta',
       _game_id: 13,
-      year: 1996
+      year: 1996,
+      _athlete_id: ['10', '12', '15', '8']
     },
     {
       city: 'Barcelona',
       _game_id: 14,
-      year: 1992
+      year: 1992,
+      _athlete_id: ['10', '11', '12', '15', '8']
     },
     {
       city: 'Seoul',
       _game_id: 15,
-      year: 1988
+      year: 1988,
+      _athlete_id: ['11', '15', '8', '9']
     },
     {
       city: 'Los Angeles',
       _game_id: 16,
-      year: 1984
+      year: 1984,
+      _athlete_id: ['11', '8', '9']
     }
   ]
 };
