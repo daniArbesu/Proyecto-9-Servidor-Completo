@@ -39,18 +39,25 @@ export const updateResults = async (athletes, athleteResults, olympicGames) => {
   console.log('>> Updated AthleteResults');
 };
 
-/* export const updateAthletes = async (athletes, athleteResults) => {
+export const updateAthletes = async (athletes, olympicGames) => {
   await Promise.all(
     athletes.map(async (athlete) => {
-      const dbResults = athlete._game_id.find(
-        (athlete) => athlete._athlete_id === result._athlete_id
-      );
-      await result.updateOne({ athlete_id: dbRoutine._id });
+      const dbGames = athlete._game_id.map((gameId) => {
+        const relatedGame = olympicGames.find((game) => game._game_id === Number(gameId));
+
+        if (relatedGame) {
+          return relatedGame._id;
+        }
+
+        return [];
+      });
+
+      await athlete.updateOne({ games: dbGames });
     })
   );
 
   console.log('>> Updated Athletes');
-}; */
+};
 
 export const cleanPrivateFields = async () => {
   await AthleteResults.updateMany(
@@ -67,7 +74,8 @@ export const cleanPrivateFields = async () => {
     {},
     {
       $unset: {
-        _athlete_id: 1
+        _athlete_id: 1,
+        _game_id: 1
       }
     }
   );

@@ -7,6 +7,7 @@ import {
   cleanCollections,
   cleanPrivateFields,
   saveDocuments,
+  updateAthletes,
   updateResults
 } from './db-functions.js';
 
@@ -17,6 +18,7 @@ const main = async () => {
   const { athletes, athleteResults, olympicGames } = await saveDocuments();
   // update athleteResults
   await updateResults(athletes, athleteResults, olympicGames);
+  await updateAthletes(athletes, olympicGames);
   await cleanPrivateFields();
 };
 

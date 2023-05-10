@@ -162,7 +162,8 @@ const seed = {
       name: 'Javier',
       photo_url: '#',
       surname: 'Gomez Noya',
-      weight: 69
+      weight: 69,
+      _game_id: []
     },
     {
       _athlete_id: '7',
@@ -172,7 +173,8 @@ const seed = {
       name: 'Sarah',
       photo_url: '#',
       surname: 'Walker',
-      weight: 74
+      weight: 74,
+      _game_id: ['3']
     },
     {
       _athlete_id: '8',
@@ -182,7 +184,8 @@ const seed = {
       name: 'Carl',
       photo_url: '#',
       surname: 'Lewis',
-      weight: 80
+      weight: 80,
+      _game_id: ['13', '14', '15', '16']
     },
     {
       _athlete_id: '9',
@@ -192,7 +195,8 @@ const seed = {
       name: 'Joaquim',
       photo_url: '#',
       surname: 'Cruz',
-      weight: 74
+      weight: 74,
+      _game_id: ['15', '16']
     }
   ],
   athleteResult: [
