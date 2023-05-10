@@ -3,14 +3,29 @@
 import './config/env.js';
 import './config/db.js';
 import express from 'express';
+import publicRouter from './routes/index.js';
+import authRouter from './routes/auth.js';
+import secretRouter from './routes/secret.js';
 
 const app = express();
 
 app.use(express.json({ limit: '100kb' }));
 app.use(express.urlencoded({ extended: false }));
 
-// Healthcheck para comprobar que la API está encendida
-app.get('/ping', (req, res) => res.status(200).send('Pong'));
+// Inject routers to add the functionality
+app.use('/api', publicRouter);
+app.use('/auth', authRouter);
+app.use('/secret', secretRouter);
+
+// Handle Client Side Errors
+app.use('*', (req, res) => {
+  res.status(401).json({ data: 'Not found' });
+});
+
+// Handle Server Errors
+app.use((error, req, res) => {
+  res.status(500).json({ data: 'Internal Server Error' });
+});
 
 const PORT = process.env.PORT || 4001;
 app.listen(PORT, () => {

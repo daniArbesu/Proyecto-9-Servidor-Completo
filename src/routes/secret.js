@@ -1,6 +1,6 @@
 import express from 'express';
-import { authMiddleware } from '../middlewares/auth.js';
-import { Movie } from '../models/mongo.js';
+import authMiddleware from '../middlewares/auth.js';
+import { Athlete } from '../models/mongo.js';
 
 const router = express.Router();
 
@@ -13,7 +13,7 @@ router.get('/song', authMiddleware, (req, res) => {
 router.post('/movie', authMiddleware, async (req, res) => {
   const { name, year, length } = req.body;
 
-  const newMovie = new Movie({
+  const newMovie = new Athlete({
     name,
     year,
     length,
