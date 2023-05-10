@@ -1,16 +1,13 @@
 /* eslint-disable no-console */
 /* eslint-disable no-underscore-dangle */
-/* eslint-disable import/extensions */
-// Aquí vamos a definir todas las rutas del server
-// que estén detrás de /auth para autenticación de usuarios
 import express from 'express';
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 import { validateEmail, validatePassword } from '../utils/validators.js';
 import { User } from '../models/mongo.js';
 
-// HASH => 'string_base' => SALT => '9132n8nr##$m9idn1' (password)
-// ENCRYPT => 'string_base' **** 'secretoquenadiesabe' => '9i74801h0d8n0123d019h2308bd8' **** 'secretoquenadiesabe' => 'string_base' (JWT)
+// Aquí vamos a definir todas las rutas del server
+// que estén detrás de /auth para autenticación de usuarios
 const TOKEN_EXPIRATION = '1h';
 const router = express.Router();
 

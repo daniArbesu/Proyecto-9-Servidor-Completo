@@ -5,7 +5,6 @@ import './config/db.js';
 import express from 'express';
 import publicRouter from './routes/index.js';
 import authRouter from './routes/auth.js';
-import secretRouter from './routes/secret.js';
 
 const app = express();
 
@@ -15,7 +14,6 @@ app.use(express.urlencoded({ extended: false }));
 // Inject routers to add the functionality
 app.use('/api', publicRouter);
 app.use('/auth', authRouter);
-app.use('/secret', secretRouter);
 
 // Handle Client Side Errors
 app.use('*', (req, res) => {
