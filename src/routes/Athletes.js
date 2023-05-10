@@ -3,11 +3,12 @@ import {
   getAllAthletes,
   getAthleteById,
   getAthleteByIdAndPopulate,
-  createExercise,
-  updateExercise,
-  deleteExercise,
-  updateRoutineFromExercise
+  createAthlete,
+  updateAthlete,
+  deleteAthlete,
+  updateGamesFromAthlete
 } from '../controllers/athletes.js';
+import authMiddleware from '../middlewares/auth.js';
 
 const router = express.Router();
 
@@ -15,9 +16,9 @@ const router = express.Router();
 router.get('/', getAllAthletes);
 router.get('/:id', getAthleteById);
 router.get('/populate/:id', getAthleteByIdAndPopulate);
-router.post('/', createExercise);
-router.put('/:id', updateExercise);
-router.put('/:id/update-routine', updateRoutineFromExercise);
-router.delete('/:id', deleteExercise);
+router.post('/', authMiddleware, createAthlete);
+router.put('/:id', authMiddleware, updateAthlete);
+router.put('/:id/update-games', authMiddleware, updateGamesFromAthlete);
+router.delete('/:id', authMiddleware, deleteAthlete);
 
 export default router;

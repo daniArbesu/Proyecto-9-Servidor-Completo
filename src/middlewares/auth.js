@@ -17,7 +17,9 @@ const authMiddleware = (req, res, next) => {
     next();
   } catch (err) {
     // Si el token no es válido lanzamos una respuesta y cortamos la ejecución del endpoint
-    res.status(401).json({ data: 'Unauthorized' });
+    res
+      .status(401)
+      .json({ data: 'Unauthorized, you need to be logged in to have access to this endpoint' });
   }
 };
 

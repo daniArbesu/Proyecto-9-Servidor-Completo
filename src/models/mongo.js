@@ -4,7 +4,7 @@ const emptySchema = new mongoose.Schema({});
 /* const athleteSchema = new mongoose.Schema({
   name: { type: String, required: true },
   surname: { type: String, required: true },
-  dateOfBirth: String,
+  date_of_birth: String,
   bio: String,
   height: String,
   weight: String,

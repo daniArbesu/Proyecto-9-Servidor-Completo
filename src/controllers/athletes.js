@@ -1,4 +1,5 @@
 /* eslint-disable import/extensions */
+import mongoose from 'mongoose';
 import { Athlete } from '../models/mongo.js';
 
 export const getAllAthletes = async (req, res) => {
@@ -18,13 +19,11 @@ export const getAthleteByIdAndPopulate = async (req, res) => {
   const { id } = req.params;
   const athlete = await Athlete.findById(id)
     .populate({
-      path: 'routine',
-      model: 'Routine',
+      path: 'games',
+      model: 'Game',
       select: {
-        name: true,
-        exercises: true,
-        sets: true,
-        reps: true
+        city: true,
+        year: true
       }
     })
     .lean();
@@ -32,48 +31,74 @@ export const getAthleteByIdAndPopulate = async (req, res) => {
   res.status(200).json({ data: athlete });
 };
 
-export const createExercise = async (req, res) => {
-  const newExercise = new Exercise({
+export const createAthlete = async (req, res) => {
+  const newAthlete = new Athlete({
     name: req.body.name,
-    type: req.body.type,
-    primary_muscles: req.body.primary_muscles,
-    url: req.body.url
+    surname: req.body.surname,
+    date_of_birth: req.body.date_of_birth,
+    bio: req.body.bio,
+    height: req.body.height,
+    weight: req.body.weight,
+    photoURL: req.body.photoURL,
+    games: req.body.games
   });
 
-  await newExercise.save();
-  res.status(201).json({ data: newExercise });
+  await newAthlete.save();
+  res.status(201).json({ data: newAthlete });
 };
 
-export const updateExercise = async (req, res) => {
+export const updateAthlete = async (req, res) => {
   const { id } = req.params;
-  const exercise = await Exercise.findByIdAndUpdate(
+  const athlete = await Athlete.findByIdAndUpdate(
     id,
     {
       name: req.body.name,
-      type: req.body.type,
-      primary_muscles: req.body.primary_muscles,
-      url: req.body.url
+      surname: req.body.surname,
+      date_of_birth: req.body.date_of_birth,
+      bio: req.body.bio,
+      height: req.body.height,
+      weight: req.body.weight,
+      photoURL: req.body.photoURL
     },
     { new: true }
   );
-  res.status(200).json({ data: exercise });
+  res.status(200).json({ data: athlete });
 };
 
-export const updateRoutineFromExercise = async (req, res) => {
+export const updateGamesFromAthlete = async (req, res) => {
   const { id } = req.params;
+  const { game } = req.body;
+  const gameId = mongoose.Types.ObjectId(game);
 
-  const exercise = await Exercise.findByIdAndUpdate(
-    id,
+  let athlete;
+
+  athlete = await Athlete.findOneAndUpdate(
+    { _id: id, exercises: gameId },
     {
-      routine: req.body.routine
+      $pull: {
+        games: gameId
+      }
     },
     { new: true }
   );
 
-  res.status(200).json({ data: exercise });
+  // We check if the query found something, if not we add the game
+  if (!athlete) {
+    athlete = await Athlete.findByIdAndUpdate(
+      id,
+      {
+        $addToSet: {
+          games: gameId
+        }
+      },
+      { new: true }
+    );
+  }
+
+  res.status(200).json({ data: athlete });
 };
 
-export const deleteExercise = async (req, res) => {
+export const deleteAthlete = async (req, res) => {
   const { id } = req.params;
   const exercise = await Exercise.findByIdAndDelete(id);
   res.status(200).json({ data: exercise });
