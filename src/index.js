@@ -3,6 +3,7 @@
 import './config/env.js';
 import './config/db.js';
 import express from 'express';
+import cors from 'cors';
 import publicRouter from './routes/index.js';
 import authRouter from './routes/auth.js';
 
