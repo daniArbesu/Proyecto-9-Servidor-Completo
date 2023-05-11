@@ -9,6 +9,7 @@ import {
   updateGamesFromAthlete
 } from '../controllers/athletes.js';
 import authMiddleware from '../middlewares/auth.js';
+import { upload } from '../middlewares/files.js';
 
 const router = express.Router();
 
@@ -16,8 +17,8 @@ const router = express.Router();
 router.get('/', getAllAthletes);
 router.get('/:id', getAthleteById);
 router.get('/populate/:id', getAthleteByIdAndPopulate);
-router.post('/', authMiddleware, createAthlete);
-router.put('/:id', authMiddleware, updateAthlete);
+router.post('/', authMiddleware, upload.single('photo_url'), createAthlete);
+router.put('/:id', authMiddleware, upload.single('photo_url'), updateAthlete);
 router.put('/:id/update-games', authMiddleware, updateGamesFromAthlete);
 router.delete('/:id', authMiddleware, deleteAthlete);
 
