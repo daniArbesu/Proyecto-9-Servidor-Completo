@@ -90,13 +90,13 @@ export const updateAthlete = async (req, res) => {
 export const updateGamesFromAthlete = async (req, res) => {
   try {
     const { id } = req.params;
-    const { game } = req.body;
-    const gameId = mongoose.Types.ObjectId(game);
+    const { games } = req.body;
+    const gameId = new mongoose.Types.ObjectId(games);
 
     let athlete;
 
     athlete = await Athlete.findOneAndUpdate(
-      { _id: id, exercises: gameId },
+      { _id: id, games: gameId },
       {
         $pull: {
           games: gameId

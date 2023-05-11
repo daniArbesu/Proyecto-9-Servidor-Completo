@@ -8,7 +8,8 @@ const athleteSchema = new mongoose.Schema({
   bio: String,
   height: String,
   weight: String,
-  photo_url: String
+  photo_url: String,
+  games: [{ type: mongoose.Types.ObjectId, ref: 'Game' }]
 });
 
 export const User = mongoose.model('User', emptySchema);
