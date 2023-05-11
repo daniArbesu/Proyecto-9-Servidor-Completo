@@ -129,8 +129,16 @@ export const deleteAthlete = async (req, res) => {
   try {
     const { id } = req.params;
     const deletedAthlete = await Athlete.findByIdAndDelete(id);
-    // Delete Cloudinary image
-    deleteImg(deletedAthlete.photo_url);
+    // Check if there's an athlete with that id
+    if (!deletedAthlete) {
+      res.status(404).json({ data: "Athlete doesn't exists" });
+      return;
+    }
+    // Check if there's an image for the athlete
+    if (deletedAthlete.photo_url) {
+      // Delete Cloudinary image
+      deleteImg(deletedAthlete.photo_url);
+    }
     res.status(200).json({ data: deletedAthlete });
   } catch (error) {
     console.error(error);
