@@ -1,6 +1,5 @@
 import mongoose from 'mongoose';
 
-const emptySchema = new mongoose.Schema({});
 const athleteSchema = new mongoose.Schema({
   name: { type: String, required: true },
   surname: { type: String, required: true },
@@ -18,7 +17,13 @@ const gameSchema = new mongoose.Schema({
   athletes: [{ type: mongoose.Types.ObjectId, ref: 'Athlete' }]
 });
 
-export const User = mongoose.model('User', emptySchema);
+const userSchema = new mongoose.Schema({
+  email: { type: String, required: true },
+  password: { type: String, required: true },
+  avatar: String
+});
+
+export const User = mongoose.model('User', userSchema);
 export const Athlete = mongoose.model('Athlete', athleteSchema);
 export const Game = mongoose.model('Game', gameSchema);
 // export const AthleteResults = mongoose.model('AthleteResults', emptySchema);
