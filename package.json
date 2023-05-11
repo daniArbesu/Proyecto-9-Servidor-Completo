@@ -6,7 +6,7 @@
   "main": "src/index.js",
   "scripts": {
     "start": "node .",
-    "dev": "node --watch .",
+    "dev": "nodemon .",
     "seed": "node src/seed/index.js"
   },
   "keywords": [],
@@ -18,7 +18,8 @@
     "eslint-config-prettier": "^8.8.0",
     "eslint-plugin-import": "^2.27.5",
     "eslint-plugin-prettier": "^4.2.1",
-    "prettier": "^2.8.8"
+    "prettier": "^2.8.8",
+    "nodemon": "^2.0.22"
   },
   "dependencies": {
     "bcrypt": "^5.1.0",
