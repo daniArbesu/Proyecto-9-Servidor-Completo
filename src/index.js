@@ -32,14 +32,15 @@ app.use(
 // Apply the rate limiting middleware to all requests
 app.use(limiter);
 
+// To allow serializing in json without external library 'extended: false'
 app.use(express.json({ limit: '100kb' }));
 app.use(express.urlencoded({ extended: false }));
 
-// Inject routers to add the functionality
+// Def. Routes
 app.use('/api', publicRouter);
 app.use('/auth', authRouter);
 
-// Handle Client Side Errors
+// Routes not found (Client Side Errors)
 app.use('*', (req, res) => {
   res.status(401).json({ data: 'Not found' });
 });
@@ -54,5 +55,5 @@ app.disable('x-powered-by');
 
 const PORT = process.env.PORT || 4001;
 app.listen(PORT, () => {
-  console.log(`Server Running in port ${PORT}!`);
+  console.log(`Server Running on htttp://localhost:${PORT}`);
 });

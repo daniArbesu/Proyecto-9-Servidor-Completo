@@ -5,6 +5,8 @@ import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 import { validateEmail, validatePassword } from '../utils/validators.js';
 import { User } from '../models/mongo.js';
+import authMiddleware from '../middlewares/auth.js';
+import { upload } from '../middlewares/files.js';
 
 // Aquí vamos a definir todas las rutas del server
 // que estén detrás de /auth para autenticación de usuarios
@@ -99,6 +101,32 @@ router.post('/login', async (req, res) => {
 });
 
 // POST http://localhost:4001/auth/avatar
-router.post('/avatar', async (req, res) => {});
+router.post('/avatar', authMiddleware, upload.single('avatar'), async (req, res) => {
+  try {
+    const { id } = req.user;
+    const isFile = req.file;
+
+    if (isFile) {
+      const updateAvatar = await User.findByIdAndUpdate(
+        id,
+        {
+          avatar: req.file.path
+        },
+        {
+          new: true
+        }
+      );
+      res.status(200).json({ data: updateAvatar });
+      return;
+    }
+
+    res.status(401).json({
+      data: 'Image for the new avatar not found'
+    });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ data: 'Internal server error' });
+  }
+});
 
 export default router;

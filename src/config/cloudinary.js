@@ -5,3 +5,5 @@ cloudinary.config({
   api_secret: process.env.API_SECRET,
   api_key: process.env.API_KEY
 });
+
+console.log('>> Cloudinary connected');
