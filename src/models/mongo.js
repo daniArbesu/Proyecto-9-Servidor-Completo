@@ -12,7 +12,13 @@ const athleteSchema = new mongoose.Schema({
   games: [{ type: mongoose.Types.ObjectId, ref: 'Game' }]
 });
 
+const gameSchema = new mongoose.Schema({
+  city: { type: String, required: true },
+  year: { type: Number, required: true },
+  athletes: [{ type: mongoose.Types.ObjectId, ref: 'Athlete' }]
+});
+
 export const User = mongoose.model('User', emptySchema);
 export const Athlete = mongoose.model('Athlete', athleteSchema);
-export const Game = mongoose.model('Game', emptySchema);
+export const Game = mongoose.model('Game', gameSchema);
 // export const AthleteResults = mongoose.model('AthleteResults', emptySchema);

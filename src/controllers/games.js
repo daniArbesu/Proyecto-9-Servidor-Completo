@@ -2,100 +2,124 @@
 import mongoose from 'mongoose';
 import { Game } from '../models/mongo.js';
 
-export const getAllRoutines = async (req, res) => {
-  const routines = await Game.find({}).lean();
+export const getAllGames = async (req, res) => {
+  try {
+    const games = await Game.find({}).lean();
 
-  res.status(200).json({ data: routines });
+    res.status(200).json({ data: games });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ data: 'Games not found' });
+  }
 };
 
-export const getRoutineById = async (req, res) => {
-  const { id } = req.params;
-  const routine = await Game.findById(id).lean();
+export const getGameById = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const game = await Game.findById(id).lean();
 
-  res.status(200).json({ data: routine });
+    res.status(200).json({ data: game });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ data: 'Game not found' });
+  }
 };
 
-export const getRoutineByIdAndPopulate = async (req, res) => {
-  const { id } = req.params;
-  const routine = await Game.findById(id)
-    .populate({
-      path: 'exercises',
-      model: 'Exercise',
-      select: {
-        name: true,
-        type: true,
-        primary_muscles: true,
-        url: true
-      }
-    })
-    .lean();
+export const getGameByIdAndPopulate = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const game = await Game.findById(id)
+      .populate({
+        path: 'athletes',
+        model: 'Athlete',
+        select: {
+          name: true,
+          surname: true,
+          date_of_birth: true,
+          height: true,
+          weight: true
+        }
+      })
+      .lean();
 
-  res.status(200).json({ data: routine });
+    res.status(200).json({ data: game });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ data: 'Game not found' });
+  }
 };
 
-export const createRoutine = async (req, res) => {
-  const newRoutine = new Game({
-    name: req.body.name,
-    sets: req.body.sets,
-    reps: req.body.reps,
-    exercises: req.body.exercises
-  });
+export const createGame = async (req, res) => {
+  try {
+    const newGame = new Game(req.body);
 
-  await newRoutine.save();
-  res.status(201).json({ data: newRoutine });
+    await newGame.save();
+    res.status(201).json({ data: newGame });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ data: 'Error Creating Game' });
+  }
 };
 
-export const updateRoutine = async (req, res) => {
-  const { id } = req.params;
-  const routine = await Game.findByIdAndUpdate(
-    id,
-    {
-      name: req.body.name,
-      sets: req.body.sets,
-      reps: req.body.reps,
-      exercises: req.body.exercises
-    },
-    { new: true }
-  );
-
-  res.status(200).json({ data: routine });
+export const updateGame = async (req, res) => {
+  try {
+    const { id } = req.params;
+    // Create new Game with the body info
+    const newGame = new Game(req.body);
+    newGame._id = id;
+    const dbGame = await Game.findByIdAndUpdate(id, newGame, { new: true });
+    res.status(200).json({ data: dbGame });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ data: 'Error updating Game' });
+  }
 };
 
-export const updateExercisesFromRoutine = async (req, res) => {
-  const { id } = req.params;
-  const { exercise } = req.body;
-  const exerciseId = mongoose.Types.ObjectId(exercise);
+export const updateAthletesFromGame = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { athletes } = req.body;
+    const athleteId = new mongoose.Types.ObjectId(athletes);
 
-  let routine;
+    let game;
 
-  routine = await Game.findOneAndUpdate(
-    { _id: id, exercises: exerciseId },
-    {
-      $pull: {
-        exercises: exerciseId
-      }
-    },
-    { new: true }
-  );
-
-  // We check if the query found something, if not we add the exercise
-  if (!routine) {
-    routine = await Game.findByIdAndUpdate(
-      id,
+    game = await Game.findOneAndUpdate(
+      { _id: id, athletes: athleteId },
       {
-        $addToSet: {
-          exercises: exerciseId
+        $pull: {
+          athletes: athleteId
         }
       },
       { new: true }
     );
-  }
 
-  res.status(200).json({ data: routine });
+    // We check if the query found something, if not we add the exercise
+    if (!game) {
+      game = await Game.findByIdAndUpdate(
+        id,
+        {
+          $addToSet: {
+            athletes: athleteId
+          }
+        },
+        { new: true }
+      );
+    }
+
+    res.status(200).json({ data: game });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ data: 'Error updating Game' });
+  }
 };
 
-export const deleteRoutine = async (req, res) => {
-  const { id } = req.params;
-  const routine = await Game.findByIdAndDelete(id);
-  res.status(200).json({ data: routine });
+export const deleteGame = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const game = await Game.findByIdAndDelete(id);
+    res.status(200).json({ data: game });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ data: 'Error deleting Game' });
+  }
 };
