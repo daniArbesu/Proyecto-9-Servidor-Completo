@@ -7,7 +7,7 @@ import express from 'express';
 import cors from 'cors';
 import rateLimit from 'express-rate-limit';
 import publicRouter from './routes/index.js';
-import authRouter from './routes/auth.js';
+import authRouter from './routes/Users.js';
 
 // Defining rate-limit for the API
 const limiter = rateLimit({
