@@ -37,7 +37,9 @@ export const getGameByIdAndPopulate = async (req, res) => {
           surname: true,
           date_of_birth: true,
           height: true,
-          weight: true
+          weight: true,
+          photo_url: true,
+          bio: true
         }
       })
       .lean();
