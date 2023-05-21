@@ -8,6 +8,7 @@ import {
   getGameByIdAndPopulate,
   updateAthletesFromGame
 } from '../controllers/games.js';
+import authMiddleware from '../middlewares/auth.js';
 
 const router = express.Router();
 
@@ -15,9 +16,9 @@ const router = express.Router();
 router.get('/', getAllGames);
 router.get('/:id', getGameById);
 router.get('/populate/:id', getGameByIdAndPopulate);
-router.post('/', createGame);
-router.put('/:id', updateGame);
-router.put('/:id/update-athletes', updateAthletesFromGame);
-router.delete('/:id', deleteGame);
+router.post('/', authMiddleware, createGame);
+router.put('/:id', authMiddleware, updateGame);
+router.put('/:id/update-athletes', authMiddleware, updateAthletesFromGame);
+router.delete('/:id', authMiddleware, deleteGame);
 
 export default router;
